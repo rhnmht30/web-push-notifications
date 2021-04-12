@@ -133,7 +133,7 @@ function receiveNotification() {
 			return response.json();
 		})
 		.then(function (data) {
-			updateStatus("Push Request Sent!");
+			updateStatus(data.message);
 		});
 }
 

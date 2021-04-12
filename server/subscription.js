@@ -33,23 +33,28 @@ const sendNotification = (req, res) => {
 	const { userSubscribtionId } = req.params;
 	const subscription = subscriptions[userSubscribtionId];
 
-	webpush
-		.sendNotification(
-			subscription,
-			JSON.stringify({
-				title: "Damien Schnorhk posted a new image",
-				text: "Visit his profile to see more.",
-				image: "/images/demo.jpg",
-				tag: "new-photo",
-				url: "https://unsplash.com/@damienschnorhk",
+	if (subscription) {
+		webpush
+			.sendNotification(
+				subscription,
+				JSON.stringify({
+					title: "Damien Schnorhk posted a new image",
+					text: "Visit his profile to see more.",
+					image: "/images/demo.jpg",
+					tag: "new-photo",
+					url: "https://unsplash.com/@damienschnorhk",
+				})
+			)
+			.then(() => {
+				res.status(202).json({ message: "User Notified" });
 			})
-		)
-		.catch((err) => {
-			console.log(err);
-			res.status(500).json({ message: "Internal Server Error", err });
-		});
-
-	res.status(202).json({ message: "User Notified" });
+			.catch((err) => {
+				console.log(err);
+				res.status(500).json({ message: "Internal Server Error", err });
+			});
+	} else {
+		res.status(404).json({ message: "Server data wiped, refresh page" });
+	}
 };
 
 module.exports = { subscribeToNotification, sendNotification };
