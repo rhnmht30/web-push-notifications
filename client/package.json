@@ -5,5 +5,8 @@
 	"main": "index.js",
 	"author": "Rohan <rhnmht30@gmail.com>",
 	"license": "MIT",
-	"private": true
+	"private": true,
+	"dependencies": {
+		"serve": "^11.3.2"
+	}
 }
