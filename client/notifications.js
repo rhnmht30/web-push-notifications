@@ -2,7 +2,8 @@
 
 let userPushId;
 const isSupported = isPushNotificationSupported();
-const applicationServerKey = "abcd";
+const applicationServerKey =
+	"BJT9biAQP8prCecgJ6TDlhJcUa29BhGBtuBOEu-HGo7iGaJiit0hPoSvNtOC1vK-SFiNN16XBzx7UXOBxlAuogM";
 
 const grantPermisstionButton = document.getElementById("grant");
 const subcriptionButton = document.getElementById("subscribe");
@@ -77,11 +78,25 @@ function updatePermsission(permission) {
 // send subscription object to application server
 function sendSubscriptionToServer(subscription) {
 	updateStatus("sending subscription to server...");
-	//mock api
-	setTimeout(() => {
-		receiveNotificationButton.disabled = false;
-		updateStatus("subscription sent! ready to receive notification");
-	}, 2000);
+
+	fetch(`http://localhost:3000/subscribe`, {
+		credentials: "omit",
+		headers: {
+			"content-type": "application/json",
+			"sec-fetch-mode": "cors",
+		},
+		body: JSON.stringify(subscription),
+		method: "POST",
+		mode: "cors",
+	})
+		.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {
+			userPushId = data.userSubscribtionId;
+			receiveNotificationButton.disabled = false;
+			updateStatus("subscription sent! ready to receive notification");
+		});
 }
 
 function createSubscription() {
@@ -102,6 +117,24 @@ function createSubscription() {
 
 // mock notification
 function receiveNotification() {
+	fetch(`http://localhost:3000/send/${userPushId}`, {
+		credentials: "omit",
+		headers: {
+			"content-type": "application/json",
+			"sec-fetch-mode": "cors",
+		},
+		method: "GET",
+		mode: "cors",
+	})
+		.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {
+			updateStatus("Push Request Sent!");
+		});
+}
+
+function mockNotification() {
 	const img = "/images/demo.jpg";
 	const text = "Visit his profile to see more.";
 	const title = "Damien Schnorhk posted a new image";
