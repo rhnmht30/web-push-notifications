@@ -1,9 +1,20 @@
 {
-  "name": "web-push-application-server",
-  "version": "0.1.0",
-  "description": "application server to handle push invokations for users",
-  "main": "index.js",
-  "author": "Rohan <rhnmht30@gmail.com>",
-  "license": "MIT",
-  "private": true
+	"name": "web-push-application-server",
+	"version": "0.1.0",
+	"description": "application server to handle push invokations for users",
+	"main": "index.js",
+	"author": "Rohan <rhnmht30@gmail.com>",
+	"license": "MIT",
+	"private": true,
+	"scripts": {
+		"dev": "nodemon index.js",
+		"start": "node index.js"
+	},
+	"dependencies": {
+		"compression": "^1.7.4",
+		"cors": "^2.8.5",
+		"express": "^4.17.1",
+		"nodemon": "^2.0.7",
+		"web-push": "^3.4.4"
+	}
 }
