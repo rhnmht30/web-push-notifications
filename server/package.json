@@ -1,0 +1,9 @@
+{
+  "name": "web-push-application-server",
+  "version": "0.1.0",
+  "description": "application server to handle push invokations for users",
+  "main": "index.js",
+  "author": "Rohan <rhnmht30@gmail.com>",
+  "license": "MIT",
+  "private": true
+}

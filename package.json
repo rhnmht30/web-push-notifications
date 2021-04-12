@@ -1,0 +1,10 @@
+{
+  "name": "web-push-notifications",
+  "version": "0.1.0",
+  "description": "implementation of push notifications in PWA using Web Push API",
+  "main": "index.js",
+  "repository": "git@github.com:rhnmht30/web-push-notifications.git",
+  "author": "Rohan <rhnmht30@gmail.com>",
+  "license": "MIT",
+  "private": true
+}

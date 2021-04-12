@@ -1,0 +1,9 @@
+{
+	"name": "web-push-application-client",
+	"version": "0.1.0",
+	"description": "client app to subscribe and receive push notifications",
+	"main": "index.js",
+	"author": "Rohan <rhnmht30@gmail.com>",
+	"license": "MIT",
+	"private": true
+}
