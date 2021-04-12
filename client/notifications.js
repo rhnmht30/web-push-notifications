@@ -79,7 +79,7 @@ function updatePermsission(permission) {
 function sendSubscriptionToServer(subscription) {
 	updateStatus("sending subscription to server...");
 
-	fetch(`http://localhost:3000/subscribe`, {
+	fetch(`https://push-notification-star-server.herokuapp.com/subscribe`, {
 		credentials: "omit",
 		headers: {
 			"content-type": "application/json",
@@ -117,15 +117,18 @@ function createSubscription() {
 
 // mock notification
 function receiveNotification() {
-	fetch(`http://localhost:3000/send/${userPushId}`, {
-		credentials: "omit",
-		headers: {
-			"content-type": "application/json",
-			"sec-fetch-mode": "cors",
-		},
-		method: "GET",
-		mode: "cors",
-	})
+	fetch(
+		`https://push-notification-star-server.herokuapp.com/send/${userPushId}`,
+		{
+			credentials: "omit",
+			headers: {
+				"content-type": "application/json",
+				"sec-fetch-mode": "cors",
+			},
+			method: "GET",
+			mode: "cors",
+		}
+	)
 		.then(function (response) {
 			return response.json();
 		})
